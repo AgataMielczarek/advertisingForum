@@ -1,0 +1,7 @@
+<h1>Create account</h1>
+{{error}}
+<form action="{% url 'register' %}" method="POST">
+    {{form}}
+    {% csrf_token %}
+    <button type="submit">Register</button>
+</form>
