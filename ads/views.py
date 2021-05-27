@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # auth
 
@@ -42,7 +42,9 @@ def log(request):
             return render(request, 'log.html', {'form':AuthenticationForm(),
             'error': error})
 
-  
+def logoutuser(request):
+    logout(request)
+    return redirect('home')
 
 
 # asd
