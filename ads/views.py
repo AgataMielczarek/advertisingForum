@@ -61,6 +61,11 @@ def detail(request, adId):
     ad = get_object_or_404(Advertisement, pk=adId)
     return render(request, 'detail.html', {'ad': ad})
 
+@login_required
+def my(request):
+    ads = Advertisement.objects.filter(user=request.user)
+    return render(request, 'my.html', {'ads' : ads})
+
 
 @login_required
 def create(request):

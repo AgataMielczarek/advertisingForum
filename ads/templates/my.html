@@ -1,0 +1,8 @@
+<h1>My advertisements</h1>
+
+
+{% for ad in ads %}
+    <a href="#edit"><h1>{{ad.company}}</h1></a>
+    <p>{{ad.desc}}</p>    
+{% endfor %}
+    
