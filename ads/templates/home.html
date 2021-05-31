@@ -7,3 +7,10 @@
     <a href = "{% url 'log' %}">Log in</a>
 {% endif%}
 
+
+{% for ad in ads %}
+    <h1>{{ad.company}}</h1>
+    <p>{{ad.desc}}</p>    
+{% endfor %}
+    
+

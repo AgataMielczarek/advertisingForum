@@ -5,6 +5,7 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from .forms import AdForm
 from django.contrib.auth.decorators import login_required
+from .models import Advertisement
 
 # auth
 
@@ -53,7 +54,8 @@ def logoutuser(request):
 # asd
 
 def home(request):
-    return render(request, 'home.html')
+    ads = Advertisement.objects.all()
+    return render(request, 'home.html', {'ads' : ads})
 
 @login_required
 def create(request):
