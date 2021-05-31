@@ -1,5 +1,5 @@
 <h1>Create advertisement</h1>
-
+<a href="{% url 'create' %}"></a>
 <form action="{% url 'create' %}" method="POST">  
     {{form.as_p}}
     {% csrf_token %}

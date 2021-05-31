@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from .forms import AdForm
+from django.contrib.auth.decorators import login_required
 
 # auth
 
@@ -43,6 +44,7 @@ def log(request):
             return render(request, 'log.html', {'form':AuthenticationForm(),
             'error': error})
 
+@login_required
 def logoutuser(request):
     logout(request)
     return redirect('home')
@@ -53,8 +55,18 @@ def logoutuser(request):
 def home(request):
     return render(request, 'home.html')
 
+@login_required
 def create(request):
     if request.method == 'GET':
         return render(request, 'create.html', {'form': AdForm()})
     else:
-        pass
+        form = AdForm(request.POST)
+        if form.is_valid():
+            ad = form.save(commit=False)
+            ad.user = request.user 
+            ad.save()
+            return redirect ('home')
+        else:
+            error = 'Something went wrong. Try again.'
+            return render(request, 'create.html', {'form': AdForm(), 'error': error})
+
