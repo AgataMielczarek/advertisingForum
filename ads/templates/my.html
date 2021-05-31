@@ -2,7 +2,7 @@
 
 
 {% for ad in ads %}
-    <a href="#edit"><h1>{{ad.company}}</h1></a>
+    <a href="{% url 'edit' ad.id %}"><h1>{{ad.company}}</h1></a>
     <p>{{ad.desc}}</p>    
 {% endfor %}
     

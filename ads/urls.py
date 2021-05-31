@@ -9,4 +9,5 @@ urlpatterns = [
     path('create', views.create, name='create'),
     path('<int:adId>', views.detail, name='detail'),
     path('my', views.my, name='my'),
+    path('my/<int:adId>', views.edit, name='edit')
 ]

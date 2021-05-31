@@ -82,3 +82,19 @@ def create(request):
             error = 'Something went wrong. Try again.'
             return render(request, 'create.html', {'form': AdForm(), 'error': error})
 
+
+@login_required
+def edit(request, adId):
+    ad = get_object_or_404(Advertisement, pk=adId) #user
+    if request.method == 'GET':
+        form = AdForm(instance=ad)
+        return render(request, 'edit.html', {'form': form, 'ad':ad})
+    else:
+        form = AdForm(request.POST, instance=ad)
+        if form.is_valid():
+            form.save()
+            return redirect('my')
+        else:
+            error = 'Something went wrong. Try again.'
+            return render(request, 'edit.html', {'form': form, 'ad':ad, 'error':error})
+
