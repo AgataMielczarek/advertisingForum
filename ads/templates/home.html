@@ -9,7 +9,8 @@
 
 
 {% for ad in ads %}
-    <h1>{{ad.company}}</h1>
+<a href="{% url 'detail' ad.id %}"><h1>{{ad.company}}</h1></a>
+    
     <p>{{ad.desc}}</p>    
 {% endfor %}
     

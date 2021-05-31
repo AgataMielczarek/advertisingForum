@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -56,6 +56,11 @@ def logoutuser(request):
 def home(request):
     ads = Advertisement.objects.all()
     return render(request, 'home.html', {'ads' : ads})
+
+def detail(request, adId):
+    ad = get_object_or_404(Advertisement, pk=adId)
+    return render(request, 'detail.html', {'ad': ad})
+
 
 @login_required
 def create(request):
