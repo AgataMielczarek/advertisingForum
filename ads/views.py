@@ -3,12 +3,13 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
+from .forms import AdForm
 
 # auth
 
 def register(request):
-    if request.method == 'GET':
-        return render(request, 'register.html', {'form':UserCreationForm()})
+    if request.method == 'GET':     
+        return render(request, 'register.html', {'form':UserCreationForm()})  
     else: #POST
         if request.POST.get('password1') == request.POST.get('password2'):
             try:
@@ -51,3 +52,9 @@ def logoutuser(request):
 
 def home(request):
     return render(request, 'home.html')
+
+def create(request):
+    if request.method == 'GET':
+        return render(request, 'create.html', {'form': AdForm()})
+    else:
+        pass
