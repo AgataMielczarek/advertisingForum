@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h1>Home page</h1>
 {% if  user.is_authenticated %}
     <p>You're logged in as {{user}}</p>
@@ -12,5 +15,6 @@
     <a href="{% url 'detail' ad.id %}"><h1>{{ad.company}}</h1></a>
     <p>{{ad.desc}}</p>    
 {% endfor %}
-    
+
+{% endblock content %} 
 

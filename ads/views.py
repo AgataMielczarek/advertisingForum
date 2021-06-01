@@ -85,7 +85,7 @@ def create(request):
 
 @login_required
 def edit(request, adId):
-    ad = get_object_or_404(Advertisement, pk=adId) #user
+    ad = get_object_or_404(Advertisement, pk=adId, user=request.user)
     if request.method == 'GET':
         form = AdForm(instance=ad)
         return render(request, 'edit.html', {'form': form, 'ad':ad})
@@ -97,4 +97,10 @@ def edit(request, adId):
         else:
             error = 'Something went wrong. Try again.'
             return render(request, 'edit.html', {'form': form, 'ad':ad, 'error':error})
+
+@login_required
+def deletead(request, adId):
+    ad = get_object_or_404(Advertisement, pk=adId, user=request.user)
+    ad.delete()
+    return redirect('my')
 
