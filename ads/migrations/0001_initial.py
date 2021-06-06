@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='Advertisement',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('compamy', models.CharField(max_length=300)),
+                ('company', models.CharField(max_length=300)),
                 ('address', models.CharField(max_length=400)),
                 ('email', models.EmailField(max_length=254)),
                 ('phone', models.CharField(max_length=14)),

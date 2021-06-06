@@ -1,20 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Home page</h1>
-{% if  user.is_authenticated %}
-    <p>You're logged in as {{user}}</p>
-    <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-    <a href = "{% url 'register' %}">Register</a>
-    <a href = "{% url 'log' %}">Log in</a>
-{% endif%}
+
+<div class="row">
+    <div class="ads-row">
+        {% for ad in ads %}
+        <div class="ad-col">
+            <a href="{% url 'detail' ad.id %}">
+                <div class="ad-box">
+                    <span>{{ad.display_industry}}</span>
+                    <div class="info-row">
+                        <div class="info-col big">
+                            <h2>{{ad.company}}</h2>
+                            <p class="desc">{{ad.desc|truncatechars:100}}</p>
+                            <p class="small-info">
+                                <ion-icon name="location-outline"></ion-icon>{{ad.address}}
+                            </p>
+                        </div>
+                        <div class="info-col">
+                            <p class="small-info">
+                                <ion-icon name="call-outline"></ion-icon>{{ad.phone}}
+                            </p>
+                            <p class="small-info">
+                                <ion-icon name="mail-outline"></ion-icon>
+                                {{ad.email}}
+                            </p>
+                            <p class="small-info">
+                                <ion-icon name="thumbs-up-outline"></ion-icon>4
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 
-{% for ad in ads %}
-    <a href="{% url 'detail' ad.id %}"><h1>{{ad.company}}</h1></a>
-    <p>{{ad.desc}}</p>    
-{% endfor %}
 
-{% endblock content %} 
 
+
+{% endblock content %}
