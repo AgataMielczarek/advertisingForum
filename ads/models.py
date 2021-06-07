@@ -19,7 +19,8 @@ class Advertisement(models.Model):
     ]
     industry = models.CharField(max_length=2, choices=industries, default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    #likes
+    #likes - ManyToManyField
+
 
     def __str__(self):
         return self.company
