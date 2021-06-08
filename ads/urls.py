@@ -14,4 +14,5 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('industry/<str:industryKey>',
          views.display_industry, name='display_industry'),
+    path('like/<int:adId>', views.like, name='like'),
 ]
